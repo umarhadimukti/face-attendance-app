@@ -19,17 +19,17 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
 
         $users = User::factory(10)->create();
-        
+
         $userRole = Role::findByName(Roles::USER);
         $userRole->users()->attach($users);
 
-        $admin_umar = User::create([
+        $admin = User::create([
             'name' => 'Umar Hadi Mukti',
             'username' => 'umarhadimukti',
             'email' => 'umarhadimukti@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
         ]);
-        $admin_umar->assignRole(Roles::ADMIN);
+        $admin->assignRole(Roles::ADMIN);
     }
 }
