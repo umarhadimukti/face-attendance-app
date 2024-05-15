@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\User\UserRepository;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
     {
         $users = $this->userRepository->getAllUsers();
 
-        return response()->json(['status' => 200, 'message' => 'Berhasil Mendapatkan Data!', 'data' => $users]);
+        return Inertia::render('User/Index', ['users' => $users]);
     }
 
     public function show(User $user)
